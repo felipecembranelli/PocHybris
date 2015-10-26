@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ArchitectureCeAModelStoreContainer" CdmEntityContainer="ArchitectureCeAEntities">
+    <EntitySetMapping Name="ActionPlan">
+      <EntityTypeMapping TypeName="ArchitectureCeAModel.ActionPlan">
+        <MappingFragment StoreEntitySet="ActionPlan">
+          <ScalarProperty Name="ActionPlanDescription" ColumnName="ActionPlanDescription" />
+          <ScalarProperty Name="EvaluationPracticeId" ColumnName="EvaluationPracticeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Evaluation">
+      <EntityTypeMapping TypeName="ArchitectureCeAModel.Evaluation">
+        <MappingFragment StoreEntitySet="Evaluation">
+          <ScalarProperty Name="ArchitectureDeliverySummaryStatus" ColumnName="ArchitectureDeliverySummaryStatus" />
+          <ScalarProperty Name="ArchitectureDefinitionSummaryStatus" ColumnName="ArchitectureDefinitionSummaryStatus" />
+          <ScalarProperty Name="ArchitecturedManagementSummaryStatus" ColumnName="ArchitecturedManagementSummaryStatus" />
+          <ScalarProperty Name="ProjectSize" ColumnName="ProjectSize" />
+          <ScalarProperty Name="Responsible" ColumnName="Responsible" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ArchitectureManager" ColumnName="ArchitectureManager" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="Contract" ColumnName="Contract" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EvaluationPractice">
+      <EntityTypeMapping TypeName="ArchitectureCeAModel.EvaluationPractice">
+        <MappingFragment StoreEntitySet="EvaluationPractice">
+          <ScalarProperty Name="EvaluationPracticeId" ColumnName="EvaluationPracticeId" />
+          <ScalarProperty Name="EvaluationPracticeNote" ColumnName="EvaluationPracticeNote" />
+          <ScalarProperty Name="EvaluationPracticeStatus" ColumnName="EvaluationPracticeStatus" />
+          <ScalarProperty Name="EvaluationId" ColumnName="EvaluationId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Practice">
+      <EntityTypeMapping TypeName="ArchitectureCeAModel.Practice">
+        <MappingFragment StoreEntitySet="Practice">
+          <ScalarProperty Name="PerspectiveId" ColumnName="PerspectiveId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PracticeRequirement">
+      <EntityTypeMapping TypeName="ArchitectureCeAModel.PracticeRequirement">
+        <MappingFragment StoreEntitySet="PracticeRequirement">
+          <ScalarProperty Name="RequirementDescription" ColumnName="RequirementDescription" />
+          <ScalarProperty Name="PracticeId" ColumnName="PracticeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProcessPerspective">
+      <EntityTypeMapping TypeName="ArchitectureCeAModel.ProcessPerspective">
+        <MappingFragment StoreEntitySet="ProcessPerspective">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

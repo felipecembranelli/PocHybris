@@ -1,0 +1,16 @@
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\obj\Debug\GitHubSample.Data.csprojResolveAssemblyReference.cache
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\bin\Debug\GitHubSample.Data.dll.config
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\bin\Debug\GitHubSample.Data.dll
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\bin\Debug\GitHubSample.Data.pdb
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\bin\Debug\EntityFramework.dll
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\bin\Debug\GitHubSample.Model.dll
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\bin\Debug\Newtonsoft.Json.dll
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\bin\Debug\GitHubSample.Model.pdb
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\bin\Debug\EntityFramework.xml
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\bin\Debug\Newtonsoft.Json.xml
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\obj\Debug\GitHubSample.Data.dll
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Data\obj\Debug\GitHubSample.Data.pdb

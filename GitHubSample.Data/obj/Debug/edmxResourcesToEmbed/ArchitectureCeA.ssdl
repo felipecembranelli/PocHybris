@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArchitectureCeAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ActionPlan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EvaluationPracticeId" Type="int" />
+    <Property Name="ActionPlanDescription" Type="varchar" MaxLength="5000" />
+  </EntityType>
+  <EntityType Name="Evaluation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Contract" Type="varchar" MaxLength="150" />
+    <Property Name="Project" Type="varchar" MaxLength="100" />
+    <Property Name="ArchitectureManager" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="char" MaxLength="1" />
+    <Property Name="LastUpdate" Type="datetime" />
+    <Property Name="Responsible" Type="varchar" MaxLength="50" />
+    <Property Name="ProjectSize" Type="char" MaxLength="1" />
+    <Property Name="ArchitecturedManagementSummaryStatus" Type="char" MaxLength="1" />
+    <Property Name="ArchitectureDefinitionSummaryStatus" Type="char" MaxLength="1" />
+    <Property Name="ArchitectureDeliverySummaryStatus" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="EvaluationPractice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EvaluationId" Type="int" />
+    <Property Name="EvaluationPracticeStatus" Type="char" MaxLength="1" />
+    <Property Name="EvaluationPracticeNote" Type="varchar(max)" />
+    <Property Name="EvaluationPracticeId" Type="int" />
+  </EntityType>
+  <EntityType Name="Practice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="PerspectiveId" Type="int" />
+  </EntityType>
+  <EntityType Name="PracticeRequirement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PracticeId" Type="int" />
+    <Property Name="RequirementDescription" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="ProcessPerspective">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Description" Type="varchar" MaxLength="5000" />
+  </EntityType>
+  <Association Name="FK_Evaluation_ID">
+    <End Role="Evaluation" Type="Self.Evaluation" Multiplicity="0..1" />
+    <End Role="EvaluationPractice" Type="Self.EvaluationPractice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Evaluation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EvaluationPractice">
+        <PropertyRef Name="EvaluationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EvaluationPractice_ID">
+    <End Role="Practice" Type="Self.Practice" Multiplicity="0..1" />
+    <End Role="EvaluationPractice" Type="Self.EvaluationPractice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EvaluationPractice">
+        <PropertyRef Name="EvaluationPracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EvaluationPractice_ID_2">
+    <End Role="EvaluationPractice" Type="Self.EvaluationPractice" Multiplicity="0..1" />
+    <End Role="ActionPlan" Type="Self.ActionPlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EvaluationPractice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActionPlan">
+        <PropertyRef Name="EvaluationPracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PERSPECTIVE_ID_2">
+    <End Role="ProcessPerspective" Type="Self.ProcessPerspective" Multiplicity="0..1" />
+    <End Role="Practice" Type="Self.Practice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProcessPerspective">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Practice">
+        <PropertyRef Name="PerspectiveId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Practice_ID_2">
+    <End Role="Practice" Type="Self.Practice" Multiplicity="0..1" />
+    <End Role="PracticeRequirement" Type="Self.PracticeRequirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeRequirement">
+        <PropertyRef Name="PracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ArchitectureCeAModelStoreContainer">
+    <EntitySet Name="ActionPlan" EntityType="Self.ActionPlan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Evaluation" EntityType="Self.Evaluation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EvaluationPractice" EntityType="Self.EvaluationPractice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Practice" EntityType="Self.Practice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PracticeRequirement" EntityType="Self.PracticeRequirement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProcessPerspective" EntityType="Self.ProcessPerspective" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Evaluation_ID" Association="Self.FK_Evaluation_ID">
+      <End Role="Evaluation" EntitySet="Evaluation" />
+      <End Role="EvaluationPractice" EntitySet="EvaluationPractice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EvaluationPractice_ID" Association="Self.FK_EvaluationPractice_ID">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="EvaluationPractice" EntitySet="EvaluationPractice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EvaluationPractice_ID_2" Association="Self.FK_EvaluationPractice_ID_2">
+      <End Role="EvaluationPractice" EntitySet="EvaluationPractice" />
+      <End Role="ActionPlan" EntitySet="ActionPlan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PERSPECTIVE_ID_2" Association="Self.FK_PERSPECTIVE_ID_2">
+      <End Role="ProcessPerspective" EntitySet="ProcessPerspective" />
+      <End Role="Practice" EntitySet="Practice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Practice_ID_2" Association="Self.FK_Practice_ID_2">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="PracticeRequirement" EntitySet="PracticeRequirement" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

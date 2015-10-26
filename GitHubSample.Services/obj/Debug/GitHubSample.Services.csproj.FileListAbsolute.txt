@@ -1,0 +1,14 @@
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Services\bin\Debug\ArchitectureCeA.Services.dll.config
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Services\bin\Debug\ArchitectureCeA.Services.dll
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Services\bin\Debug\ArchitectureCeA.Services.pdb
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Services\bin\Debug\GitHubSample.Data.dll
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Services\bin\Debug\GitHubSample.Model.dll
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Services\bin\Debug\EntityFramework.dll
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Services\bin\Debug\Newtonsoft.Json.dll
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Services\bin\Debug\GitHubSample.Data.pdb
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Services\bin\Debug\GitHubSample.Model.pdb
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Services\bin\Debug\EntityFramework.xml
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Services\bin\Debug\Newtonsoft.Json.xml
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Services\obj\Debug\GitHubSample.Services.csprojResolveAssemblyReference.cache
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Services\obj\Debug\ArchitectureCeA.Services.dll
+C:\Users\feliperc\OneDrive\Public\Way2\GitHubSample\GitHubSample.Services\obj\Debug\ArchitectureCeA.Services.pdb

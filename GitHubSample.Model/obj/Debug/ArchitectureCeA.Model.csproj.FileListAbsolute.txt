@@ -1,0 +1,9 @@
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Model\bin\Debug\ArchitectureCeA.Model.dll.config
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Model\bin\Debug\ArchitectureCeA.Model.dll
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Model\bin\Debug\ArchitectureCeA.Model.pdb
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Model\bin\Debug\EntityFramework.dll
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Model\bin\Debug\EntityFramework.xml
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Model\obj\Debug\ArchitectureCeA.Model.dll
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Model\obj\Debug\ArchitectureCeA.Model.pdb

@@ -1,0 +1,4 @@
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Infrastructure\bin\Debug\ArchitectureCeA.Infrastructure.dll
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Infrastructure\bin\Debug\ArchitectureCeA.Infrastructure.pdb
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Infrastructure\obj\Debug\ArchitectureCeA.Infrastructure.dll
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Infrastructure\obj\Debug\ArchitectureCeA.Infrastructure.pdb

@@ -1,0 +1,11 @@
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Services\bin\Debug\ArchitectureCeA.Services.dll
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Services\bin\Debug\ArchitectureCeA.Services.pdb
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Services\bin\Debug\ArchitectureCeA.Data.dll
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Services\bin\Debug\ArchitectureCeA.Model.dll
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Services\bin\Debug\EntityFramework.dll
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Services\bin\Debug\ArchitectureCeA.Data.pdb
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Services\bin\Debug\ArchitectureCeA.Model.pdb
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Services\bin\Debug\EntityFramework.xml
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Services\obj\Debug\ArchitectureCeA.Services.csprojResolveAssemblyReference.cache
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Services\obj\Debug\ArchitectureCeA.Services.dll
+C:\Users\feliperc\OneDrive\Public\Estudo\Pilot\ArchitectureCeA.Web\ArchitectureCeA.Services\obj\Debug\ArchitectureCeA.Services.pdb

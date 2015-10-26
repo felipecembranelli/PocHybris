@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArchitectureCeAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ArchitectureCeAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ActionPlan" EntityType="ArchitectureCeAModel.ActionPlan" />
+    <EntitySet Name="Evaluation" EntityType="ArchitectureCeAModel.Evaluation" />
+    <EntitySet Name="EvaluationPractice" EntityType="ArchitectureCeAModel.EvaluationPractice" />
+    <EntitySet Name="Practice" EntityType="ArchitectureCeAModel.Practice" />
+    <EntitySet Name="PracticeRequirement" EntityType="ArchitectureCeAModel.PracticeRequirement" />
+    <EntitySet Name="ProcessPerspective" EntityType="ArchitectureCeAModel.ProcessPerspective" />
+    <AssociationSet Name="FK_EvaluationPractice_ID_2" Association="ArchitectureCeAModel.FK_EvaluationPractice_ID_2">
+      <End Role="EvaluationPractice" EntitySet="EvaluationPractice" />
+      <End Role="ActionPlan" EntitySet="ActionPlan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Evaluation_ID" Association="ArchitectureCeAModel.FK_Evaluation_ID">
+      <End Role="Evaluation" EntitySet="Evaluation" />
+      <End Role="EvaluationPractice" EntitySet="EvaluationPractice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EvaluationPractice_ID" Association="ArchitectureCeAModel.FK_EvaluationPractice_ID">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="EvaluationPractice" EntitySet="EvaluationPractice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PERSPECTIVE_ID_2" Association="ArchitectureCeAModel.FK_PERSPECTIVE_ID_2">
+      <End Role="ProcessPerspective" EntitySet="ProcessPerspective" />
+      <End Role="Practice" EntitySet="Practice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Practice_ID_2" Association="ArchitectureCeAModel.FK_Practice_ID_2">
+      <End Role="Practice" EntitySet="Practice" />
+      <End Role="PracticeRequirement" EntitySet="PracticeRequirement" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ActionPlan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EvaluationPracticeId" Type="Int32" />
+    <Property Name="ActionPlanDescription" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EvaluationPractice" Relationship="ArchitectureCeAModel.FK_EvaluationPractice_ID_2" FromRole="ActionPlan" ToRole="EvaluationPractice" />
+  </EntityType>
+  <EntityType Name="Evaluation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Contract" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Project" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ArchitectureManager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+    <Property Name="Responsible" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProjectSize" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ArchitecturedManagementSummaryStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ArchitectureDefinitionSummaryStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ArchitectureDeliverySummaryStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="EvaluationPractice" Relationship="ArchitectureCeAModel.FK_Evaluation_ID" FromRole="Evaluation" ToRole="EvaluationPractice" />
+  </EntityType>
+  <EntityType Name="EvaluationPractice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EvaluationId" Type="Int32" />
+    <Property Name="EvaluationPracticeStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="EvaluationPracticeNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EvaluationPracticeId" Type="Int32" />
+    <NavigationProperty Name="ActionPlan" Relationship="ArchitectureCeAModel.FK_EvaluationPractice_ID_2" FromRole="EvaluationPractice" ToRole="ActionPlan" />
+    <NavigationProperty Name="Evaluation" Relationship="ArchitectureCeAModel.FK_Evaluation_ID" FromRole="EvaluationPractice" ToRole="Evaluation" />
+    <NavigationProperty Name="Practice" Relationship="ArchitectureCeAModel.FK_EvaluationPractice_ID" FromRole="EvaluationPractice" ToRole="Practice" />
+  </EntityType>
+  <EntityType Name="Practice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PerspectiveId" Type="Int32" />
+    <NavigationProperty Name="EvaluationPractice" Relationship="ArchitectureCeAModel.FK_EvaluationPractice_ID" FromRole="Practice" ToRole="EvaluationPractice" />
+    <NavigationProperty Name="ProcessPerspective" Relationship="ArchitectureCeAModel.FK_PERSPECTIVE_ID_2" FromRole="Practice" ToRole="ProcessPerspective" />
+    <NavigationProperty Name="PracticeRequirement" Relationship="ArchitectureCeAModel.FK_Practice_ID_2" FromRole="Practice" ToRole="PracticeRequirement" />
+  </EntityType>
+  <EntityType Name="PracticeRequirement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PracticeId" Type="Int32" />
+    <Property Name="RequirementDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Practice" Relationship="ArchitectureCeAModel.FK_Practice_ID_2" FromRole="PracticeRequirement" ToRole="Practice" />
+  </EntityType>
+  <EntityType Name="ProcessPerspective">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Practice" Relationship="ArchitectureCeAModel.FK_PERSPECTIVE_ID_2" FromRole="ProcessPerspective" ToRole="Practice" />
+  </EntityType>
+  <Association Name="FK_EvaluationPractice_ID_2">
+    <End Type="ArchitectureCeAModel.EvaluationPractice" Role="EvaluationPractice" Multiplicity="0..1" />
+    <End Type="ArchitectureCeAModel.ActionPlan" Role="ActionPlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EvaluationPractice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActionPlan">
+        <PropertyRef Name="EvaluationPracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Evaluation_ID">
+    <End Type="ArchitectureCeAModel.Evaluation" Role="Evaluation" Multiplicity="0..1" />
+    <End Type="ArchitectureCeAModel.EvaluationPractice" Role="EvaluationPractice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Evaluation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EvaluationPractice">
+        <PropertyRef Name="EvaluationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EvaluationPractice_ID">
+    <End Type="ArchitectureCeAModel.Practice" Role="Practice" Multiplicity="0..1" />
+    <End Type="ArchitectureCeAModel.EvaluationPractice" Role="EvaluationPractice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EvaluationPractice">
+        <PropertyRef Name="EvaluationPracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PERSPECTIVE_ID_2">
+    <End Type="ArchitectureCeAModel.ProcessPerspective" Role="ProcessPerspective" Multiplicity="0..1" />
+    <End Type="ArchitectureCeAModel.Practice" Role="Practice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProcessPerspective">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Practice">
+        <PropertyRef Name="PerspectiveId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Practice_ID_2">
+    <End Type="ArchitectureCeAModel.Practice" Role="Practice" Multiplicity="0..1" />
+    <End Type="ArchitectureCeAModel.PracticeRequirement" Role="PracticeRequirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Practice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PracticeRequirement">
+        <PropertyRef Name="PracticeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

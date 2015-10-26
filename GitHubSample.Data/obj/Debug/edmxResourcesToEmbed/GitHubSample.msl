@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GitHubSampleModelStoreContainer" CdmEntityContainer="GitHubSampleEntities">
+    <EntitySetMapping Name="FavorityRepository">
+      <EntityTypeMapping TypeName="GitHubSampleModel.FavorityRepository">
+        <MappingFragment StoreEntitySet="FavorityRepository">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RepositoryName" ColumnName="RepositoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
