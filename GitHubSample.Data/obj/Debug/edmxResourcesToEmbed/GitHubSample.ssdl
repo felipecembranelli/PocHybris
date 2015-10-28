@@ -1,13 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GitHubSampleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="FavorityRepository">
+  <EntityType Name="GitHubRepo">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="RepositoryName" Type="nchar" MaxLength="10" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Language" Type="nvarchar" MaxLength="50" />
+    <Property Name="OwnerName" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="UpdatedAt" Type="datetime" />
+    <Property Name="OwnerAvatarUrl" Type="varchar(max)" />
+    <Property Name="GitHubRepoId" Type="int" Nullable="false" />
   </EntityType>
   <EntityContainer Name="GitHubSampleModelStoreContainer">
-    <EntitySet Name="FavorityRepository" EntityType="Self.FavorityRepository" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GitHubRepo" EntityType="Self.GitHubRepo" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

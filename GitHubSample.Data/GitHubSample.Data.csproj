@@ -61,18 +61,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FavorityRepository.cs">
-      <DependentUpon>GitHubSample.tt</DependentUpon>
-    </Compile>
+    <Compile Include="GitHubAPI\GitHubApiWrapper.cs" />
+    <Compile Include="GitHubAPI\GitHubRepoDTO.cs" />
+    <Compile Include="GitHubAPI\GitHubUserDTO.cs" />
     <Compile Include="GitHubSample.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GitHubSample.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GitHubSample.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GitHubSample.tt</DependentUpon>
     </Compile>
     <Compile Include="GitHubSample.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -88,6 +83,7 @@
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="IRepository\IGitHubRepoRepository.cs" />
+    <Compile Include="MockRepository\GitHubRepoRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GitHubRepoRepository.cs" />
   </ItemGroup>
@@ -111,11 +107,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>GitHubSample.edmx</DependentUpon>
       <LastGenOutput>GitHubSample.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="GitHubSample.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GitHubSample.edmx</DependentUpon>
-      <LastGenOutput>GitHubSample.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup />

@@ -21,11 +21,16 @@ namespace GiHubSample.Web
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/sb-admin-2.js",
+                      "~/Scripts/metisMenu.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/sb-admin-2.css", 
+                      "~/Content/metisMenu.min.css",
+                      "~/Content/font-awesome.min.css"));
         }
     }
 }

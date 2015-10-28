@@ -9,10 +9,23 @@ using GitHubSample.Model;
 namespace GitHubSample.Data.Repository
 {
 
-    public interface IGitHubRepoRepository
+    public interface IGitHubRepoRepository: IRepository<GitHubRepo>
     {
+        #region GitHub api wrapper
+
         IEnumerable<GitHubRepo> GetUserRepositories();
-        GitHubRepoJson SearchRepositories(string query);
+        IEnumerable<GitHubRepo> SearchRepositories(string query);
+        GitHubRepo GetRepoByName(string owner, string repoName);
+        IEnumerable<GitHubUserDTO> GetRepoContributors(string owner, string repoName);
+
+        #endregion
+
+        #region GitHub EF wrapper
+
+        void UnMarkAsFavorite(GitHubRepo repository);
+        bool IsFavoriteRepo(int gitHubRepoId);
+
+        #endregion
     }
 }
   

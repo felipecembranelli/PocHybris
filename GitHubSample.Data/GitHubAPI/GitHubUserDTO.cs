@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace GitHubSample.Model
 {
-    public class Owner
+    public class GitHubUserDTO
     {
+        public int Id { get; set; }
         [JsonProperty("avatar_url")]
         public string AvatarUrl { get; set; }
-        public string login { get; set; }
-        public string url { get; set; }
-        public string gravatar_id { get; set; }
-        public int id { get; set; }
+        public string Login { get; set; }
+        public string Url { get; set; }
+        public string Gravatar_id { get; set; }
     }
 }

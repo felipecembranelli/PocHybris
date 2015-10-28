@@ -60,7 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FavorityRepository.cs">
+    <Compile Include="GitHubRepo.cs">
       <DependentUpon>GitHubSample.tt</DependentUpon>
     </Compile>
     <Compile Include="GitHubSample.cs">
@@ -68,9 +68,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GitHubSample.tt</DependentUpon>
     </Compile>
-    <Compile Include="Owner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GitHubRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GitHubSample.tt">

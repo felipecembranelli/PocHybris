@@ -23,35 +23,58 @@ namespace GitHubSample.Services
             this.unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<GitHubRepo> GetAll()
+        #region favorities methods
+
+        public IEnumerable<GitHubRepo> GetAllFavorities()
         {
-            throw new NotImplementedException();
+            return this.gitHubRepoRepository.GetAll();
         }
 
-        public GitHubRepo GetById(int id)
+        public void MarkAsFavorite(GitHubRepo repository)
         {
-            throw new NotImplementedException();
+            this.gitHubRepoRepository.Add(repository);
+
+            this.unitOfWork.Commit();
         }
 
-        //public IEnumerable<Model.GitHubRepo> GetAll()
-        //{
-        //    return this.gitHubRepoRepository.GetAll();
-        //}
+        public void UnMarkAsFavorite(GitHubRepo repository)
+        {
+            this.gitHubRepoRepository.UnMarkAsFavorite(repository);
 
-        //public Model.GitHubRepo GetById(int id)
-        //{
-        //    return this.gitHubRepoRepository.GetById(id);
-        //}
+            this.unitOfWork.Commit();
+        }
+
+        public bool IsFavoriteRepo(int gitHubRepoId)
+        {
+            return this.gitHubRepoRepository.IsFavoriteRepo(gitHubRepoId);
+        }
+
+        #endregion
+
+        #region GitHub services API
 
         public IEnumerable<GitHubRepo> GetUserRepositories()
         {
             return this.gitHubRepoRepository.GetUserRepositories();
         }
 
-        public GitHubRepoJson SearchByRepoName(string query)
+        public IEnumerable<GitHubRepo> SearchByRepoName(string query)
         {
             return this.gitHubRepoRepository.SearchRepositories(query);
         }
 
+        public GitHubRepo GetRepoByName(string owner, string repoName)
+        {
+            return this.gitHubRepoRepository.GetRepoByName(owner, repoName);
+        }
+
+        public IEnumerable<GitHubUserDTO> GetRepoContributors(string owner, string repoName)
+        {
+            return this.gitHubRepoRepository.GetRepoContributors(owner, repoName);
+        }
+
+      
+
+        #endregion
     }
 }

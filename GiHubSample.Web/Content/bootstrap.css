@@ -511,7 +511,7 @@ h6 {
 
 h1,
 .h1 {
-  font-size: 36px;
+  font-size: 25px;
 }
 
 h2,
@@ -4181,7 +4181,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
 }
 
-.navbar-fixed-top {
+.navbar-fixed-top {p
   top: 0;
   z-index: 1030;
 }
@@ -4194,7 +4194,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
   float: left;
   padding: 15px 15px;
-  font-size: 18px;
+  font-size: 28px;
   line-height: 20px;
 }
 

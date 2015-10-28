@@ -1,11 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="GitHubSampleModelStoreContainer" CdmEntityContainer="GitHubSampleEntities">
-    <EntitySetMapping Name="FavorityRepository">
-      <EntityTypeMapping TypeName="GitHubSampleModel.FavorityRepository">
-        <MappingFragment StoreEntitySet="FavorityRepository">
+    <EntitySetMapping Name="GitHubRepo">
+      <EntityTypeMapping TypeName="GitHubSampleModel.GitHubRepo">
+        <MappingFragment StoreEntitySet="GitHubRepo">
+          <ScalarProperty Name="GitHubRepoId" ColumnName="GitHubRepoId" />
+          <ScalarProperty Name="OwnerAvatarUrl" ColumnName="OwnerAvatarUrl" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="RepositoryName" ColumnName="RepositoryName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

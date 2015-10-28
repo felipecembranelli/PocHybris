@@ -10,98 +10,117 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using GitHubSample.Data.GitHubAPI;
 
 namespace GitHubSample.Data.Repository
 {
-    public class GitHubRepoRepository: IGitHubRepoRepository
+    public class GitHubRepoRepository: Infrastructure.RepositoryBase<GitHubRepo>, IGitHubRepoRepository
     {
 
-        //public async Task<string> GetMyRepositories()
-        //{
-        //    string ret = string.Empty;
-
-        //    using (var client = new HttpClient())
-        //    {
-        //        client.BaseAddress = new Uri("https://api.github.com/users/felipecembranelli/repos");
-        //        client.DefaultRequestHeaders.Accept.Clear();
-        //        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-        //        // New code:
-        //        HttpResponseMessage response = await client.GetAsync("https://api.github.com/users/felipecembranelli/repos");
-
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            GitHubRepo product = await response.Content.ReadAsAsync<GitHubRepo>();
-
-        //            ret = product.Description;
-
-        //            //return ret;
-        //        }
-        //    }
-
-        //    return ret;
-        //}
-
-        //public List<GitHubRepo> GetUserRepositories()
-        //{
-        //    var jsonObject = new List<GitHubRepo>();
-        //    try
-        //    {
-        //        WebClient wc = new WebClient();
-
-        //        wc.Headers["User-Agent"] = "Mozilla/4.0 (Compatible; Windows NT 5.1; MSIE 6.0) " +
-        //                                       "(compatible; MSIE 6.0; Windows NT 5.1; " +
-        //                                       ".NET CLR 1.1.4322; .NET CLR 2.0.50727)";
-
-        //        string json = wc.DownloadString("https://api.github.com/users/felipecembranelli/repos");
-
-        //        jsonObject = JsonConvert.DeserializeObject<List<GitHubRepo>>(json);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-
-        //    return jsonObject;
-        //}
-
-        public GitHubRepoJson SearchRepositories(string query)
+        public GitHubRepoRepository(IDatabaseFactory databaseFactory)
+            : base(databaseFactory)
         {
-            var jsonObject = new GitHubRepoJson();
+
+        }
+
+        #region EF wrapper
+
+        public void UnMarkAsFavorite(GitHubRepo repository)
+        {
+            var entity = base.GetAll().Where(r => r.GitHubRepoId == repository.GitHubRepoId).FirstOrDefault();
+
+            base.Delete(entity);
+
+        }
+
+        public bool IsFavoriteRepo(int gitHubRepoId)
+        {
+            var entity = base.GetAll().Where(r => r.GitHubRepoId == gitHubRepoId).FirstOrDefault();
+
+            if (entity != null)
+                return true;
+            else
+                return false;
+
+        }
+
+        #endregion
+
+        #region GitHub api wrapper
+
+        public IEnumerable<GitHubRepo> SearchRepositories(string query)
+        {
+
+            var repoList = new List<GitHubRepo>();
+
             try
             {
-                WebClient wc = new WebClient();
+                string jsonString = GitHubApiWrapper.CallRestService(string.Format("https://api.github.com/search/repositories?q={0}", query));
 
-                wc.Headers["User-Agent"] = "Mozilla/4.0 (Compatible; Windows NT 5.1; MSIE 6.0) " +
-                                               "(compatible; MSIE 6.0; Windows NT 5.1; " +
-                                               ".NET CLR 1.1.4322; .NET CLR 2.0.50727)";
+                var jsonObjectDto = JsonConvert.DeserializeObject<GitHubRepoJsonDTO>(jsonString);
 
-                string json = wc.DownloadString(string.Format("https://api.github.com/search/repositories?q={0}",query));
-
-                jsonObject = JsonConvert.DeserializeObject<GitHubRepoJson>(json);
+                foreach (var repo in jsonObjectDto.Items.ToList())
+                {
+                    repoList.Add(this.MapDtoToModel(repo));
+                }
             }
             catch (Exception)
             {
                 throw;
             }
 
-            return jsonObject;
+            return repoList;
+        }
+
+        public GitHubRepo GetRepoByName(string owner, string repoName)
+        {
+            var repoModel = new GitHubRepo();
+            try
+            {
+                string json = GitHubApiWrapper.CallRestService(string.Format("https://api.github.com/repos/{0}/{1}", owner, repoName));
+
+                var jsonDto = JsonConvert.DeserializeObject<GitHubRepoDTO>(json);
+
+                repoModel = this.MapDtoToModel(jsonDto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return repoModel;
         }
 
         public IEnumerable<GitHubRepo> GetUserRepositories()
         {
-            var jsonObject = new List<GitHubRepo>();
+            var repoList = new List<GitHubRepo>();
             try
             {
-                WebClient wc = new WebClient();
+                string json = GitHubApiWrapper.CallRestService("https://api.github.com/users/felipecembranelli/repos");
 
-                wc.Headers["User-Agent"] = "Mozilla/4.0 (Compatible; Windows NT 5.1; MSIE 6.0) " +
-                                               "(compatible; MSIE 6.0; Windows NT 5.1; " +
-                                               ".NET CLR 1.1.4322; .NET CLR 2.0.50727)";
+                var jsonDto = JsonConvert.DeserializeObject<List<GitHubRepoDTO>>(json);
 
-                string json = wc.DownloadString("https://api.github.com/users/felipecembranelli/repos");
+                foreach (var repo in jsonDto.ToList())
+                {
+                    repoList.Add(this.MapDtoToModel(repo));
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
-                jsonObject = JsonConvert.DeserializeObject<List<GitHubRepo>>(json);
+            return repoList;
+        }
+
+        public IEnumerable<GitHubUserDTO> GetRepoContributors(string owner, string repoName)
+        {
+            var jsonObject = new List<GitHubUserDTO>();
+            try
+            {
+                string json = GitHubApiWrapper.CallRestService(string.Format("https://api.github.com/repos/{0}/{1}/contributors", owner, repoName));
+
+                jsonObject = JsonConvert.DeserializeObject<List<GitHubUserDTO>>(json);
             }
             catch (Exception)
             {
@@ -110,5 +129,21 @@ namespace GitHubSample.Data.Repository
 
             return jsonObject;
         }
+
+        private GitHubSample.Model.GitHubRepo MapDtoToModel(GitHubRepoDTO dto)
+        {
+            GitHubSample.Model.GitHubRepo repoModel = new GitHubRepo();
+            repoModel.Name = dto.name;
+            repoModel.Description = dto.description;
+            repoModel.GitHubRepoId = dto.id;
+            repoModel.Language = dto.language;
+            repoModel.OwnerAvatarUrl = dto.owner.AvatarUrl;
+            repoModel.OwnerName = dto.owner.Login;
+            //repoModel.UpdatedAt = new System.DateTime(repo.updated_at);
+
+            return repoModel;
+        }
+
+        #endregion
     }
 }

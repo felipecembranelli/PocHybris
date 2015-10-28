@@ -2,30 +2,94 @@
 @{
     ViewBag.Title = "Repositories";
 }
-<div class="well span12">
-
-    <h2>Repositories</h2>
-
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.description)
-            </th>
-            <th></th>
-        </tr>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">GitHub Repositories</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.name)
-                </td>
-                <td>
-                    @Html.Raw(item.description)
-                </td>
-            </tr>
+            <div class="col-xs-9 text-right">
+                <div class="huge">@Html.DisplayFor(modelItem => item.name)</div>
+                <div class="huge">@Html.DisplayFor(modelItem => item.Description)</div>
+            </div>
+
+            <div class="panel-footer">
+                <span class="pull-left">View Details</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+
+            <a href="/Home/Detail?owner="></a>
+
+            <table>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.Raw(item.description)
+                    </td>
+                </tr>
+            </table>
+
+           @*<div class="col-lg-3 col-md-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <img class="img-gitlogo-ss" src="~/Content/Image/githublogo.png" />
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">@Html.DisplayFor(modelItem => item.name)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/Home/Detail?owner=@item.owner.login&repoName=@item.name">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>*@
         }
-    </table>
+    </div>
+    <!-- /.row -->
 </div>
+
+
+    @*<div class="well span12">
+
+
+
+        <h2>Repositories</h2>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.description)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.Raw(item.description)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>*@

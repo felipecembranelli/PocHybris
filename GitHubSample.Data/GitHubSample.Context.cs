@@ -9,10 +9,11 @@
 
 namespace GitHubSample.Data
 {
+    using Model;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class GitHubSampleEntities : DbContext
     {
         public GitHubSampleEntities()
@@ -25,6 +26,6 @@ namespace GitHubSample.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<FavorityRepository> FavorityRepository { get; set; }
+        public virtual DbSet<GitHubRepo> GitHubRepo { get; set; }
     }
 }

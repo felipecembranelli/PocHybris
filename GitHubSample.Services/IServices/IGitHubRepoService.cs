@@ -9,9 +9,14 @@ namespace GitHubSample.Services.IServices
 {
     public interface IGitHubRepoService
 	{
-        IEnumerable<GitHubRepo> GetAll();
+        IEnumerable<GitHubRepo> GetAllFavorities();
+        void MarkAsFavorite(GitHubRepo repository);
+        void UnMarkAsFavorite(GitHubRepo repository);
+        bool IsFavoriteRepo(int gitHubRepoId);
+
         IEnumerable<GitHubRepo> GetUserRepositories();
-        GitHubRepoJson SearchByRepoName(string query);
-        GitHubRepo GetById(int id);
-	} 
+        IEnumerable<GitHubRepo> SearchByRepoName(string query);
+        GitHubRepo GetRepoByName(string owner, string repoName);
+        IEnumerable<GitHubUserDTO> GetRepoContributors(string owner, string repoName);
+    } 
 }

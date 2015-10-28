@@ -18,7 +18,7 @@ namespace GiHubSample.Web.Tests.Controllers
         public void Index()
         {
             // Arrange
-            GitHubSample.Data.Repository.GitHubRepoRepository repo = new GitHubSample.Data.Repository.GitHubRepoRepository();
+            GitHubSample.Data.Repository.GitHubRepoRepository repo = new GitHubSample.Data.Repository.GitHubRepoRepository(new DatabaseFactory());
             IUnitOfWork unitOfWork = new UnitOfWork(new DatabaseFactory());
             IGitHubRepoService svc = new GitHubSample.Services.GitHubRepoService(repo, unitOfWork);
             HomeController controller = new HomeController(svc);
