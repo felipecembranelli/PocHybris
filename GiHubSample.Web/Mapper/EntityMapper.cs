@@ -34,11 +34,10 @@ namespace GiHubSample.Web.Mapper
             vm.Name = repo.Name;
             vm.Description = repo.Description;
             vm.Language = repo.Language;
-            //vm.Updated_at = repoDetail.UpdatedAt;
+            vm.Updated_at = repo.UpdatedAt.ToString();
             vm.OwnerLogin = repo.OwnerName;
             vm.OwnerAvatarUrl = repo.OwnerAvatarUrl;
             vm.GitHubRepoId = repo.GitHubRepoId;
-            //vm.IsFavoriteRepo = favorityFlag;
             if (contributors != null)
                 vm.Contributors = contributors.ToList();
 

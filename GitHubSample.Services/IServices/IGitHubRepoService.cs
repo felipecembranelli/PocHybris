@@ -14,7 +14,7 @@ namespace GitHubSample.Services.IServices
         void UnMarkAsFavorite(GitHubRepo repository);
         bool IsFavoriteRepo(int gitHubRepoId);
 
-        IEnumerable<GitHubRepo> GetUserRepositories();
+        IEnumerable<GitHubRepo> GetUserRepositories(string userName);
         IEnumerable<GitHubRepo> SearchByRepoName(string query);
         GitHubRepo GetRepoByName(string owner, string repoName);
         IEnumerable<GitHubUserDTO> GetRepoContributors(string owner, string repoName);

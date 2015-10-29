@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubSample.Data", "GitHubSample.Data\GitHubSample.Data.csproj", "{839EB4B6-BF92-418C-8AC6-AAA03B155DC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubSample.Infrastructure", "GitHubSample.Infrastructure\GitHubSample.Infrastructure.csproj", "{1970BA35-8CCB-4DC1-A896-3C7FC057776C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubSample.Model", "GitHubSample.Model\GitHubSample.Model.csproj", "{34DEB13E-336C-4FFE-8400-CA39FB20890B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubSample.Services", "GitHubSample.Services\GitHubSample.Services.csproj", "{5334E426-4D75-439B-A63C-B983F50C54BA}"
@@ -25,10 +23,6 @@ Global
 		{839EB4B6-BF92-418C-8AC6-AAA03B155DC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{839EB4B6-BF92-418C-8AC6-AAA03B155DC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{839EB4B6-BF92-418C-8AC6-AAA03B155DC4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1970BA35-8CCB-4DC1-A896-3C7FC057776C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1970BA35-8CCB-4DC1-A896-3C7FC057776C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1970BA35-8CCB-4DC1-A896-3C7FC057776C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1970BA35-8CCB-4DC1-A896-3C7FC057776C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{34DEB13E-336C-4FFE-8400-CA39FB20890B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{34DEB13E-336C-4FFE-8400-CA39FB20890B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34DEB13E-336C-4FFE-8400-CA39FB20890B}.Release|Any CPU.ActiveCfg = Release|Any CPU

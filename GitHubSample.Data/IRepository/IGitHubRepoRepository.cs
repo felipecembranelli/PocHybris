@@ -13,7 +13,7 @@ namespace GitHubSample.Data.Repository
     {
         #region GitHub api wrapper
 
-        IEnumerable<GitHubRepo> GetUserRepositories();
+        IEnumerable<GitHubRepo> GetUserRepositories(string userName);
         IEnumerable<GitHubRepo> SearchRepositories(string query);
         GitHubRepo GetRepoByName(string owner, string repoName);
         IEnumerable<GitHubUserDTO> GetRepoContributors(string owner, string repoName);

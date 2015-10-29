@@ -91,12 +91,12 @@ namespace GitHubSample.Data.Repository
             return repoModel;
         }
 
-        public IEnumerable<GitHubRepo> GetUserRepositories()
+        public IEnumerable<GitHubRepo> GetUserRepositories(string userName)
         {
             var repoList = new List<GitHubRepo>();
             try
             {
-                string json = GitHubApiWrapper.CallRestService("https://api.github.com/users/felipecembranelli/repos");
+                string json = GitHubApiWrapper.CallRestService(string.Format("https://api.github.com/users/{0}/repos", userName));
 
                 var jsonDto = JsonConvert.DeserializeObject<List<GitHubRepoDTO>>(json);
 
@@ -139,9 +139,25 @@ namespace GitHubSample.Data.Repository
             repoModel.Language = dto.language;
             repoModel.OwnerAvatarUrl = dto.owner.AvatarUrl;
             repoModel.OwnerName = dto.owner.Login;
-            //repoModel.UpdatedAt = new System.DateTime(repo.updated_at);
+            repoModel.UpdatedAt = ConvertToDateTime(dto.updated_at);
 
             return repoModel;
+        }
+
+        private System.DateTime? ConvertToDateTime(string value)
+        {
+            DateTime dt;
+
+            try
+            {
+                dt = DateTime.ParseExact(value, "yyyy-MM-ddTHH:mm:ssZ", null);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+            return dt;
         }
 
         #endregion

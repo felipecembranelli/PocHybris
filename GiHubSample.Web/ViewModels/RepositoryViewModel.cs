@@ -9,8 +9,23 @@ namespace GiHubSample.Web.ViewModels
 {
     public class GitHubRepoViewModel
     {
+        private string _description;
+
         public int GitHubRepoId { get; set; }
-        public string Description { get; set; }
+        public string Description
+        {
+            get { return _description; }
+            set
+            {
+                if (value != null)
+                {
+                    if (value.Length > 30)
+                    {
+                        _description = value.Substring(0, 30) + "...";
+                    }
+                }
+            }
+        }
         public string Language { get; set; }
         public int Watchers { get; set; }
         public bool Fork { get; set; }

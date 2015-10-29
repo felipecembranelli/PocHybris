@@ -53,28 +53,54 @@ namespace GitHubSample.Services
 
         #region GitHub services API
 
-        public IEnumerable<GitHubRepo> GetUserRepositories()
+        public IEnumerable<GitHubRepo> GetUserRepositories(string userName)
         {
-            return this.gitHubRepoRepository.GetUserRepositories();
+            try
+            {
+                return this.gitHubRepoRepository.GetUserRepositories(userName);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public IEnumerable<GitHubRepo> SearchByRepoName(string query)
         {
-            return this.gitHubRepoRepository.SearchRepositories(query);
+            try
+            {
+                return this.gitHubRepoRepository.SearchRepositories(query);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public GitHubRepo GetRepoByName(string owner, string repoName)
         {
-            return this.gitHubRepoRepository.GetRepoByName(owner, repoName);
+            try
+            {
+                return this.gitHubRepoRepository.GetRepoByName(owner, repoName);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public IEnumerable<GitHubUserDTO> GetRepoContributors(string owner, string repoName)
         {
-            return this.gitHubRepoRepository.GetRepoContributors(owner, repoName);
+            try
+            {
+                return this.gitHubRepoRepository.GetRepoContributors(owner, repoName);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
-
-      
-
         #endregion
     }
 }

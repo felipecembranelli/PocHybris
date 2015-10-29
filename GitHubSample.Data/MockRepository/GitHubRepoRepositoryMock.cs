@@ -63,7 +63,7 @@ namespace GitHubSample.Data.Repository
             repoModel.Name = repoName;
             repoModel.Description = desc;
             repoModel.Language = "javascript";
-            //model.UpdatedAt = "01/10/2015";
+            repoModel.UpdatedAt = new DateTime(2015, 1, 25);
             repoModel.OwnerName = owner;
             repoModel.OwnerAvatarUrl = avatar_url;
             repoModel.GitHubRepoId = 1;
@@ -71,9 +71,8 @@ namespace GitHubSample.Data.Repository
             return repoModel;
         }
 
-        public IEnumerable<GitHubRepo> GetUserRepositories()
+        public IEnumerable<GitHubRepo> GetUserRepositories(string userName)
         {
-            
             return this.GenerateFakeRepos();
         }
 
@@ -90,20 +89,6 @@ namespace GitHubSample.Data.Repository
             contribList.Add(new GitHubUserDTO() { Login = "contrib1", AvatarUrl = contrib_avatar_url });
 
             return contribList;
-        }
-
-        private GitHubSample.Model.GitHubRepo MapDtoToModel(GitHubRepoDTO dto)
-        {
-            GitHubSample.Model.GitHubRepo repoModel = new GitHubRepo();
-            repoModel.Name = dto.name;
-            repoModel.Description = dto.description;
-            repoModel.GitHubRepoId = dto.id;
-            repoModel.Language = dto.language;
-            repoModel.OwnerAvatarUrl = dto.owner.AvatarUrl;
-            repoModel.OwnerName = dto.owner.Login;
-            //repoModel.UpdatedAt = new System.DateTime(repo.updated_at);
-
-            return repoModel;
         }
 
         private IEnumerable<GitHubRepo> GenerateFakeRepos()
@@ -148,6 +133,36 @@ namespace GitHubSample.Data.Repository
             }
 
             return repoList;
+        }
+
+        private GitHubSample.Model.GitHubRepo MapDtoToModel(GitHubRepoDTO dto)
+        {
+            GitHubSample.Model.GitHubRepo repoModel = new GitHubRepo();
+            repoModel.Name = dto.name;
+            repoModel.Description = dto.description;
+            repoModel.GitHubRepoId = dto.id;
+            repoModel.Language = dto.language;
+            repoModel.OwnerAvatarUrl = dto.owner.AvatarUrl;
+            repoModel.OwnerName = dto.owner.Login;
+            repoModel.UpdatedAt = ConvertToDateTime(dto.updated_at);
+
+            return repoModel;
+        }
+
+        private System.DateTime? ConvertToDateTime(string value)
+        {
+            DateTime dt;
+
+            try
+            {
+                dt = DateTime.ParseExact(value, "yyyy-MM-ddTHH:mm:ssZ", null);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+            return dt;
         }
 
         #endregion

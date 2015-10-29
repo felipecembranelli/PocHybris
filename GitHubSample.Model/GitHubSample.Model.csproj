@@ -63,11 +63,6 @@
     <Compile Include="GitHubRepo.cs">
       <DependentUpon>GitHubSample.tt</DependentUpon>
     </Compile>
-    <Compile Include="GitHubSample.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GitHubSample.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -8,10 +8,12 @@ using GitHubSample.Services.IServices;
 using GiHubSample.Web.ViewModels;
 using GitHubSample.Model;
 using GiHubSample.Web.Mapper;
+using GiHubSample.Web.App_Start;
 
 namespace GiHubSample.Web.Controllers
 {
-    public class HomeController : Controller
+    [HandleError(View = "Error")]
+    public class HomeController :  BaseController
     {
         private readonly IGitHubRepoService gitHubservice;
 
@@ -20,25 +22,15 @@ namespace GiHubSample.Web.Controllers
             this.gitHubservice = service;
         }
 
+        [HandleError(View = "Error")]
         public ActionResult Index()
         {
-            var userRepositories = this.gitHubservice.GetUserRepositories();
+            if (Bootstrapper.GetDefaultGitHubRepo() == string.Empty)
+                throw new Exception("GitHub default repository not configured.");
 
-            // Map to ViewModel
-            //List<GitHubRepoViewModel> userRepositoriesVM = new List<GitHubRepoViewModel>();
+            var userRepositories = this.gitHubservice.GetUserRepositories(Bootstrapper.GetDefaultGitHubRepo());
 
-            //foreach (var r in userRepositories)
-            //{
-            //    GitHubRepoViewModel vm = new GitHubRepoViewModel();
-            //    vm.Name = r.Name;
-            //    vm.Description = r.Description;
-            //    vm.GitHubRepoId = r.Id;
-            //    vm.OwnerLogin = r.OwnerName;
-
-            //    userRepositoriesVM.Add(vm);
-            //}
-
-            ViewBag.PageTitle = "My Repositories";
+            ViewBag.PageTitle = "My Repositories: " + Bootstrapper.GetDefaultGitHubRepo();
 
             return View("ListRepositories", EntityMapper.MapListToViewModelList(userRepositories));
         }
@@ -50,37 +42,11 @@ namespace GiHubSample.Web.Controllers
             // get repo contributors
             var contributors = this.gitHubservice.GetRepoContributors(owner, repoName);
 
-            // create view model
-            //RepositoryViewModel vm = new RepositoryViewModel();
-            //vm.name = repoDetail.name;
-            //vm.description = repoDetail.description;
-            //vm.contributors = contributors.ToList();
-
-
             // Verify if it is already marked as favorite
             var favorityFlag = this.gitHubservice.IsFavoriteRepo(gitHubRepoId);
 
-            //// MOCK
-            //string desc = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknow";
-            //string avatar_url = "https://avatars1.githubusercontent.com/u/167455?v=3&s=400";
-            //string contrib_avatar_url = "https://avatars0.githubusercontent.com/u/954031?v=3&s=400";
-
             var vm = EntityMapper.MapToViewModel(repoDetail, contributors);
-            //vm.GitHubRepoId = gitHubRepoId;
             vm.IsFavoriteRepo = favorityFlag;
-
-            //vm.Name = repoDetail.Name;
-            //vm.Description = repoDetail.Description;
-            //vm.Language = repoDetail.Language;
-            //vm.Updated_at = repoDetail.UpdatedAt;
-            //vm.OwnerLogin = repoDetail.OwnerName;
-            //vm.OwnerAvatarUrl = repoDetail.OwnerAvatarUrl;
-
-            //vm.Contributors = contributors.ToList();
-
-            //vm.Contributors = new List<Owner>() { new Owner() {Login = "fulano", AvatarUrl = contrib_avatar_url },
-            //                                      new Owner() {Login = "beltrano", AvatarUrl = contrib_avatar_url }
-            //                                    };
 
             return View("RepoDetail", vm);
         }
@@ -113,24 +79,29 @@ namespace GiHubSample.Web.Controllers
         {
             var userRepositories = this.gitHubservice.GetAllFavorities();
 
-            //// Map to ViewModel
-            //List<GitHubRepoViewModel> userRepositoriesVM = new List<GitHubRepoViewModel>();
-
-            //foreach (var r in userRepositories)
-            //{
-            //    GitHubRepoViewModel vm = new GitHubRepoViewModel();
-            //    vm.Name = r.Name;
-            //    vm.Description = r.Description;
-            //    vm.GitHubRepoId = r.Id;
-
-            //    userRepositoriesVM.Add(vm);
-            //}
-
             ViewBag.PageTitle = "Favorites Repositories";
 
-            return View("ListRepositories", this.MapListToViewModelList(userRepositories));
+            return View("ListRepositories", EntityMapper.MapListToViewModelList(userRepositories));
         }
 
-     
+        //protected override void OnException(ExceptionContext filterContext)
+        //{
+        //    Exception ex = filterContext.Exception;
+        //    filterContext.ExceptionHandled = true;
+
+        //    var model = new HandleErrorInfo(filterContext.Exception, "Home", "Error");
+
+        //    filterContext.Result = new ViewResult()
+        //    {
+        //        ViewName = "Error",
+        //        ViewData = new ViewDataDictionary(model)
+        //    };
+
+        //}
+
+        //public ActionResult Error()
+        //{
+        //    return View("Error", Server.GetLastError());
+        //}
     }
 }

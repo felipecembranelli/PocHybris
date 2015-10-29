@@ -10,8 +10,6 @@ namespace GitHubSample.Data.GitHubAPI
 {
     public static class GitHubApiWrapper
     {
-        //const string API_SERVICE_END_POINT = "https://api.github.com";
-
         //public string GetWordFromDictionary(long index)
         //{
         //    try
@@ -32,7 +30,22 @@ namespace GitHubSample.Data.GitHubAPI
 
         public static string CallRestService(string url)
         {
-            return CallRestServiceWebRequest(url);
+            try
+            {
+                return CallRestServiceWebRequest(url);
+            }
+            catch (WebException ex)
+            {
+                if (ex.Status == WebExceptionStatus.ProtocolError)
+                    throw new Exception(ex.Message);
+                else
+                    throw ex;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
 
         public static string CallRestServiceWebClient(string url)

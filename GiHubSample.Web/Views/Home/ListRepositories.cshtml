@@ -13,18 +13,6 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        {
-
-            string desc = item.Description;
-
-            if (desc != null)
-            {
-                if (desc.Length > 30)
-                {
-                    desc = desc.Substring(0, 30) + "...";
-                }
-            }
-
         <div class="col-lg-3 col-md-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -35,21 +23,20 @@
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">@Html.DisplayFor(modelItem => item.Name)</div>
-                            <div>@desc</div>
+                            <div>@Html.DisplayFor(modelItem => item.Description)</div>
                         </div>
                     </div>
                 </div>
                 
-                @*<a href="/Home/Detail?owner=@item.owner.login&repoName=@item.name">*@
+                    <a href="@Url.Action("Detail", "Home",new { gitHubRepoId = item.GitHubRepoId, repoName = item.Name, owner = item.OwnerLogin })">
                     <div class="panel-footer">
-                        <span class="pull-left">@Html.ActionLink("View Details", "Detail", new { gitHubRepoId = item.GitHubRepoId, repoName= item.Name, owner=item.OwnerLogin })</span>
+                        <span class="pull-left">View Details</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
-                @*</a>*@
-            </div>
+                        </a>
+</div>
         </div>
-        }
     }
     </div>
         <!-- /.row -->

@@ -16,5 +16,21 @@ namespace GiHubSample.Web.App_Start
             // IOC configuration
             AutoFacConfig.ConfigureContainer();
         }
+
+        public static string GetDefaultGitHubRepo()
+        {
+            string defaultRepo = string.Empty;
+
+            try
+            {
+                defaultRepo = System.Configuration.ConfigurationManager.AppSettings["DefaultGitHubRepo"].ToString();
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+
+            return defaultRepo;
+        }
     }
 }
