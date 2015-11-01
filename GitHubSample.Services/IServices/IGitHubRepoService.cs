@@ -10,7 +10,7 @@ namespace GitHubSample.Services.IServices
     public interface IGitHubRepoService
 	{
         IEnumerable<GitHubRepo> GetAllFavorities();
-        void MarkAsFavorite(GitHubRepo repository);
+        GitHubRepo MarkAsFavorite(GitHubRepo repository);
         void UnMarkAsFavorite(GitHubRepo repository);
         bool IsFavoriteRepo(int gitHubRepoId);
 

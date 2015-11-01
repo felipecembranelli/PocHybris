@@ -30,23 +30,55 @@ namespace GitHubSample.Services
             return this.gitHubRepoRepository.GetAll();
         }
 
-        public void MarkAsFavorite(GitHubRepo repository)
+        public GitHubRepo MarkAsFavorite(GitHubRepo repository)
         {
-            this.gitHubRepoRepository.Add(repository);
+            if (repository == null)
+                return null;
 
-            this.unitOfWork.Commit();
+            try
+            {
+                var ret = this.gitHubRepoRepository.AddandReturn(repository);
+
+                this.unitOfWork.Commit();
+
+                return ret;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public void UnMarkAsFavorite(GitHubRepo repository)
         {
-            this.gitHubRepoRepository.UnMarkAsFavorite(repository);
+            if (repository == null)
+                return;
 
-            this.unitOfWork.Commit();
+            try
+            {
+                this.gitHubRepoRepository.UnMarkAsFavorite(repository);
+
+                this.unitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public bool IsFavoriteRepo(int gitHubRepoId)
         {
-            return this.gitHubRepoRepository.IsFavoriteRepo(gitHubRepoId);
+            try
+            {
+                return this.gitHubRepoRepository.IsFavoriteRepo(gitHubRepoId);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         #endregion

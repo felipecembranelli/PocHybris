@@ -83,7 +83,6 @@
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="IRepository\IGitHubRepoRepository.cs" />
-    <Compile Include="MockRepository\GitHubRepoRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GitHubRepoRepository.cs" />
   </ItemGroup>

@@ -133,6 +133,10 @@ namespace GitHubSample.Data.Repository
         private GitHubSample.Model.GitHubRepo MapDtoToModel(GitHubRepoDTO dto)
         {
             GitHubSample.Model.GitHubRepo repoModel = new GitHubRepo();
+
+            if (dto == null)
+                return null;
+
             repoModel.Name = dto.name;
             repoModel.Description = dto.description;
             repoModel.GitHubRepoId = dto.id;

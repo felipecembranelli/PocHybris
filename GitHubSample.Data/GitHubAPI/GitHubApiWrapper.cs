@@ -10,24 +10,6 @@ namespace GitHubSample.Data.GitHubAPI
 {
     public static class GitHubApiWrapper
     {
-        //public string GetWordFromDictionary(long index)
-        //{
-        //    try
-        //    {
-        //        string url = string.Format(API_SERVICE_END_POINT, index);
-
-        //        return CallRestService(url);
-
-        //    }
-        //    catch (WebException ex)
-        //    {
-        //        if (ex.Status == WebExceptionStatus.ProtocolError)
-        //            return null;
-        //        else
-        //            throw ex;
-        //    }
-        //}
-
         public static string CallRestService(string url)
         {
             try
@@ -80,11 +62,6 @@ namespace GitHubSample.Data.GitHubAPI
             webrequest.UserAgent = "Mozilla/4.0 (Compatible; Windows NT 5.1; MSIE 6.0) " +
                                                "(compatible; MSIE 6.0; Windows NT 5.1; " +
                                                ".NET CLR 1.1.4322; .NET CLR 2.0.50727)"; 
-
-            //webrequest.Headers.Add("User-Agent", "Mozilla/4.0 (Compatible; Windows NT 5.1; MSIE 6.0) " +
-            //                                   "(compatible; MSIE 6.0; Windows NT 5.1; " +
-            //                                   ".NET CLR 1.1.4322; .NET CLR 2.0.50727)");
-
 
             HttpWebResponse webresponse = (HttpWebResponse)webrequest.GetResponse();
 

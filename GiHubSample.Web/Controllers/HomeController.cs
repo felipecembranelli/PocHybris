@@ -16,21 +16,34 @@ namespace GiHubSample.Web.Controllers
     public class HomeController :  BaseController
     {
         private readonly IGitHubRepoService gitHubservice;
+        private string defaultUserRepository;
 
         public HomeController(IGitHubRepoService service)
         {
             this.gitHubservice = service;
+            defaultUserRepository = Bootstrapper.GetDefaultGitHubRepo();
         }
 
-        [HandleError(View = "Error")]
+        public string DefaultUserRepository
+        {
+            get
+            {
+                return defaultUserRepository;
+            }
+            set
+            {
+                defaultUserRepository = value;
+            }
+        }
+
         public ActionResult Index()
         {
-            if (Bootstrapper.GetDefaultGitHubRepo() == string.Empty)
-                throw new Exception("GitHub default repository not configured.");
+            if (this.defaultUserRepository == string.Empty)
+                throw new ArgumentNullException("GitHub default repository not configured.");
 
-            var userRepositories = this.gitHubservice.GetUserRepositories(Bootstrapper.GetDefaultGitHubRepo());
+            var userRepositories = this.gitHubservice.GetUserRepositories(this.defaultUserRepository);
 
-            ViewBag.PageTitle = "My Repositories: " + Bootstrapper.GetDefaultGitHubRepo();
+            ViewBag.PageTitle = "My Repositories: " + this.DefaultUserRepository;
 
             return View("ListRepositories", EntityMapper.MapListToViewModelList(userRepositories));
         }
@@ -46,7 +59,9 @@ namespace GiHubSample.Web.Controllers
             var favorityFlag = this.gitHubservice.IsFavoriteRepo(gitHubRepoId);
 
             var vm = EntityMapper.MapToViewModel(repoDetail, contributors);
-            vm.IsFavoriteRepo = favorityFlag;
+
+            if (vm!=null)
+                vm.IsFavoriteRepo = favorityFlag;
 
             return View("RepoDetail", vm);
         }
@@ -83,25 +98,5 @@ namespace GiHubSample.Web.Controllers
 
             return View("ListRepositories", EntityMapper.MapListToViewModelList(userRepositories));
         }
-
-        //protected override void OnException(ExceptionContext filterContext)
-        //{
-        //    Exception ex = filterContext.Exception;
-        //    filterContext.ExceptionHandled = true;
-
-        //    var model = new HandleErrorInfo(filterContext.Exception, "Home", "Error");
-
-        //    filterContext.Result = new ViewResult()
-        //    {
-        //        ViewName = "Error",
-        //        ViewData = new ViewDataDictionary(model)
-        //    };
-
-        //}
-
-        //public ActionResult Error()
-        //{
-        //    return View("Error", Server.GetLastError());
-        //}
     }
 }

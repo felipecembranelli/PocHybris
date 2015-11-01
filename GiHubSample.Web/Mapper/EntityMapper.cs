@@ -14,6 +14,9 @@ namespace GiHubSample.Web.Mapper
         {
             List<GitHubRepoViewModel> userRepositoriesVM = new List<GitHubRepoViewModel>();
 
+            if (repos == null)
+                return null;
+
             foreach (var r in repos)
             {
                 GitHubRepoViewModel vm = new GitHubRepoViewModel();
@@ -30,6 +33,9 @@ namespace GiHubSample.Web.Mapper
 
         public static GitHubRepoViewModel MapToViewModel(GitHubRepo repo, IEnumerable<GitHubUserDTO> contributors)
         {
+            if (repo == null)
+                return null;
+
             GitHubRepoViewModel vm = new GitHubRepoViewModel();
             vm.Name = repo.Name;
             vm.Description = repo.Description;
@@ -46,6 +52,9 @@ namespace GiHubSample.Web.Mapper
 
         public static GitHubRepo MapToModel(GitHubRepoViewModel vm)
         {
+            if (vm == null)
+                return null;
+
             GitHubRepo repoModel = new GitHubRepo();
             repoModel.Name = vm.Name;
             repoModel.Description = vm.Description;
