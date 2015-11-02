@@ -8,7 +8,7 @@ namespace GitHubSample.Data.Infrastructure
 {
     public abstract class RepositoryBase<T> where T : class
     {
-        private GitHubSampleEntities dataContext;
+        private DbContext dataContext;
         private readonly IDbSet<T> dbset;
         protected RepositoryBase(IDatabaseFactory databaseFactory)
         {
@@ -22,7 +22,7 @@ namespace GitHubSample.Data.Infrastructure
             private set;
         }
 
-        protected GitHubSampleEntities DataContext
+        protected DbContext DataContext
         {
             get { return dataContext ?? (dataContext = DatabaseFactory.Get()); }
         }

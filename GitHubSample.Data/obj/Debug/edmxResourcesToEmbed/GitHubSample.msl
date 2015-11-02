@@ -6,9 +6,9 @@
         <MappingFragment StoreEntitySet="GitHubRepo">
           <ScalarProperty Name="GitHubRepoId" ColumnName="GitHubRepoId" />
           <ScalarProperty Name="OwnerAvatarUrl" ColumnName="OwnerAvatarUrl" />
-          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
           <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
           <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
           <ScalarProperty Name="Language" ColumnName="Language" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Name" ColumnName="Name" />

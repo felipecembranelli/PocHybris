@@ -5,11 +5,9 @@ using GitHubSample.Data.Repository;
 using GitHubSample.Services;
 using GitHubSample.Model;
 using System.Collections.Generic;
-using System.Linq;
-using GitHubSample.Services.IServices;
-using GiHubSample.Web.ViewModels;
+using GitHubSample.Tests.Helpers;
 
-namespace GiHubSample.Web.Tests.Repositories
+namespace GitHubSample.Tests.Services
 {
     [TestClass]
     public class GitHubServiceTest
@@ -22,7 +20,7 @@ namespace GiHubSample.Web.Tests.Repositories
             var mockUnitOfWork = new Mock<IUnitOfWork>();
 
             // create a list of repositories to return 
-            var userRepositories = (List<GitHubRepo>)GitHubRepoRepositoryMockHelper.GenerateFakeRepos("fakeUserName");
+            var userRepositories = (List<GitHubRepo>)MockHelper.GenerateFakeRepos("fakeUserName");
 
             mockGitHubRepoRepository.Setup(s => s.GetAll()).Returns(userRepositories);
 
@@ -81,7 +79,7 @@ namespace GiHubSample.Web.Tests.Repositories
             var mockUnitOfWork = new Mock<IUnitOfWork>();
 
             // create new repo fake
-            var repo = GitHubRepoRepositoryMockHelper.GetRepoByName("owner1", "repoNameFake1");
+            var repo = MockHelper.GetRepoByName("owner1", "repoNameFake1");
 
             int newId = 26;
             mockGitHubRepoRepository.Setup(s => s.AddandReturn(repo)).Returns((GitHubRepo g) => 
@@ -121,6 +119,28 @@ namespace GiHubSample.Web.Tests.Repositories
         }
 
         [TestMethod]
+        [ExpectedException(typeof(System.Exception))]
+        public void MarkAsFavoriteService_ReturnsException()
+        {
+            // Arrange
+            var mockGitHubRepoRepository = new Mock<IGitHubRepoRepository>();
+            var mockUnitOfWork = new Mock<IUnitOfWork>();
+
+            // create new repo fake
+            GitHubRepo repo = new GitHubRepo();
+
+            mockGitHubRepoRepository.Setup(s => s.AddandReturn(repo)).Throws(new System.Exception("Fake exception"));
+
+            var svc = new GitHubRepoService(mockGitHubRepoRepository.Object, mockUnitOfWork.Object);
+
+            // Act
+            var repoReturned = svc.MarkAsFavorite(repo);
+
+            // Assert
+            // automatic
+        }
+
+        [TestMethod]
         public void UnMarkAsFavoriteService_ValidRepoInRepository()
         {
             // Arrange
@@ -128,7 +148,7 @@ namespace GiHubSample.Web.Tests.Repositories
             var mockUnitOfWork = new Mock<IUnitOfWork>();
 
             // create new repo fake
-            var repo = GitHubRepoRepositoryMockHelper.GetRepoByName("owner1", "repoNameFake1");
+            var repo = MockHelper.GetRepoByName("owner1", "repoNameFake1");
 
             var svc = new GitHubRepoService(mockGitHubRepoRepository.Object, mockUnitOfWork.Object);
 
@@ -166,7 +186,7 @@ namespace GiHubSample.Web.Tests.Repositories
             var mockUnitOfWork = new Mock<IUnitOfWork>();
 
             // create new repo fake
-            var repo = GitHubRepoRepositoryMockHelper.GetRepoByName("owner1", "repoNameFake1");
+            var repo = MockHelper.GetRepoByName("owner1", "repoNameFake1");
 
             mockGitHubRepoRepository.Setup(s => s.IsFavoriteRepo(repo.Id)).Returns(true);
 
@@ -187,7 +207,7 @@ namespace GiHubSample.Web.Tests.Repositories
             var mockUnitOfWork = new Mock<IUnitOfWork>();
 
             // create new repo fake
-            var repo = GitHubRepoRepositoryMockHelper.GetRepoByName("owner1", "repoNameFake1");
+            var repo = MockHelper.GetRepoByName("owner1", "repoNameFake1");
 
             mockGitHubRepoRepository.Setup(s => s.IsFavoriteRepo(repo.Id)).Returns(false);
 
@@ -220,6 +240,27 @@ namespace GiHubSample.Web.Tests.Repositories
         }
 
         [TestMethod]
+        [ExpectedException(typeof(System.Exception))]
+        public void IsFavoriteRepoService_ReturnsException()
+        {
+            // Arrange
+            var mockGitHubRepoRepository = new Mock<IGitHubRepoRepository>();
+            var mockUnitOfWork = new Mock<IUnitOfWork>();
+            int repo = -1;
+
+            // force exception
+            mockGitHubRepoRepository.Setup(s => s.IsFavoriteRepo(repo)).Throws(new System.Exception("Fake Exception"));
+
+            var svc = new GitHubRepoService(mockGitHubRepoRepository.Object, mockUnitOfWork.Object);
+
+            // Act
+            var result = svc.IsFavoriteRepo(repo);
+
+            // Assert
+            // automatic
+        }
+
+        [TestMethod]
         public void GetUserRepositoriesService_ReturnsRepositoriesList()
         {
             // Arrange
@@ -228,7 +269,7 @@ namespace GiHubSample.Web.Tests.Repositories
 
             // create a list of repositories to return 
             var owner = "fakeUserName";
-            var userRepositories = (List<GitHubRepo>)GitHubRepoRepositoryMockHelper.GenerateFakeRepos(owner);
+            var userRepositories = (List<GitHubRepo>)MockHelper.GenerateFakeRepos(owner);
 
             mockGitHubRepoRepository.Setup(s => s.GetUserRepositories(owner)).Returns(userRepositories);
 
@@ -264,6 +305,28 @@ namespace GiHubSample.Web.Tests.Repositories
         }
 
         [TestMethod]
+        [ExpectedException(typeof(System.Exception))]
+        public void GetUserRepositoriesService_ReturnsException()
+        {
+            // Arrange
+            var mockGitHubRepoRepository = new Mock<IGitHubRepoRepository>();
+            var mockUnitOfWork = new Mock<IUnitOfWork>();
+
+            // create a list of repositories to return 
+            string owner = null;
+
+            mockGitHubRepoRepository.Setup(s => s.GetUserRepositories(owner)).Throws(new System.Exception("Fake exception"));
+
+            var svc = new GitHubRepoService(mockGitHubRepoRepository.Object, mockUnitOfWork.Object);
+
+            // Act
+            var result = (List<GitHubRepo>)svc.GetUserRepositories(null);
+
+            // Assert
+            // automatic
+        }
+
+        [TestMethod]
         public void SearchByRepoNameService_ReturnsRepositoriesList()
         {
             // Arrange
@@ -273,7 +336,7 @@ namespace GiHubSample.Web.Tests.Repositories
             // create a list of repositories to return 
             var owner = "fakeUserName";
             string query = "repoXPTO";
-            var userRepositories = (List<GitHubRepo>)GitHubRepoRepositoryMockHelper.GenerateFakeRepos(owner);
+            var userRepositories = (List<GitHubRepo>)MockHelper.GenerateFakeRepos(owner);
 
             mockGitHubRepoRepository.Setup(s => s.SearchRepositories(query)).Returns(userRepositories);
 
@@ -309,6 +372,28 @@ namespace GiHubSample.Web.Tests.Repositories
         }
 
         [TestMethod]
+        [ExpectedException(typeof(System.Exception))]
+        public void SearchByRepoNameService_ReturnsException()
+        {
+            // Arrange
+            var mockGitHubRepoRepository = new Mock<IGitHubRepoRepository>();
+            var mockUnitOfWork = new Mock<IUnitOfWork>();
+
+            // create a list of repositories to return 
+            string query = null;
+
+            mockGitHubRepoRepository.Setup(s => s.SearchRepositories(query)).Throws(new System.Exception("Fake exception"));
+
+            var svc = new GitHubRepoService(mockGitHubRepoRepository.Object, mockUnitOfWork.Object);
+
+            // Act
+            var result = (List<GitHubRepo>)svc.SearchByRepoName(query);
+
+            // Assert
+            // automatic
+        }
+
+        [TestMethod]
         public void GetRepoByNameService_ReturnsRepo()
         {
             // Arrange
@@ -318,7 +403,7 @@ namespace GiHubSample.Web.Tests.Repositories
             // create a fake repo to return 
             var owner = "fakeOwner";
             var repoName = "fakeRepoName";
-            var fakeRepo = (GitHubRepo)GitHubRepoRepositoryMockHelper.GetRepoByName(owner, repoName);
+            var fakeRepo = (GitHubRepo)MockHelper.GetRepoByName(owner, repoName);
 
             mockGitHubRepoRepository.Setup(s => s.GetRepoByName(owner, repoName)).Returns(fakeRepo);
 
@@ -353,6 +438,25 @@ namespace GiHubSample.Web.Tests.Repositories
         }
 
         [TestMethod]
+        [ExpectedException(typeof(System.Exception))]
+        public void GetRepoByNameService_ReturnsException()
+        {
+            // Arrange
+            var mockGitHubRepoRepository = new Mock<IGitHubRepoRepository>();
+            var mockUnitOfWork = new Mock<IUnitOfWork>();
+
+            mockGitHubRepoRepository.Setup(s => s.GetRepoByName(null, null)).Throws(new System.Exception("Fake exception"));
+            
+            var svc = new GitHubRepoService(mockGitHubRepoRepository.Object, mockUnitOfWork.Object);
+
+            // Act
+            var result = svc.GetRepoByName(null, null);
+
+            // Assert
+            // automatic
+        }
+
+        [TestMethod]
         public void GetRepoContributorsService_ReturnsRepositoriesList()
         {
             // Arrange
@@ -362,7 +466,7 @@ namespace GiHubSample.Web.Tests.Repositories
             // create a list of contribs to return 
             var owner = "fakeUserName";
             string repoName = "repoXPTO";
-            var contribList = (List<GitHubUserDTO>)GitHubRepoRepositoryMockHelper.GetRepoContributors(owner, repoName);
+            var contribList = (List<GitHubUserDTO>)MockHelper.GetRepoContributors(owner, repoName);
 
             mockGitHubRepoRepository.Setup(s => s.GetRepoContributors(owner, repoName)).Returns(contribList);
 
@@ -396,6 +500,30 @@ namespace GiHubSample.Web.Tests.Repositories
 
             // Assert
             Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(System.Exception))]
+        public void GetRepoContributorsService_ReturnsException()
+        {
+            // Arrange
+            var mockGitHubRepoRepository = new Mock<IGitHubRepoRepository>();
+            var mockUnitOfWork = new Mock<IUnitOfWork>();
+
+            // create a list of contribs to return 
+            var owner = "fakeUserName";
+            string repoName = null;
+
+            mockGitHubRepoRepository.Setup(s => s.GetRepoContributors(owner, repoName)).Throws(new System.Exception("Fake exception"));
+
+
+            var svc = new GitHubRepoService(mockGitHubRepoRepository.Object, mockUnitOfWork.Object);
+
+            // Act
+            var result = (List<GitHubUserDTO>)svc.GetRepoContributors(owner, repoName);
+
+            // Assert
+            // automatic
         }
 
         //[TestMethod]

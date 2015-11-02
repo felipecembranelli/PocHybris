@@ -6,25 +6,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GiHubSample.Web.Controllers;
 using GitHubSample.Services.IServices;
 using Moq;
-using GitHubSample.Data.Repository;
 using GitHubSample.Model;
 using GiHubSample.Web.ViewModels;
+using GitHubSample.Tests.Helpers;
 
-namespace GiHubSample.Web.Tests.Controllers
+namespace GitHubSample.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest
     {
-
-        // testar retorno de view (ListRepositories) (verificar importancia disso !!!)  - ok
-        // testar se action retorna a lista de repos (userRepositories)
-        // testar retorno de view (Detail) - ok
-        // testar se action retorna repo detail
-        // testar retorno de view (search) - ok
-        // testar se action retorna a lista de repos com base no search (userRepositories)
-        // testar retorno de view (ListFavoritiesRepos) - ok
-        // testar model is ivalid ? (MarkAsFavorite)
-        // testar se action retorna repo (userRepositories)
 
         [TestMethod]
         public void IndexAction_ReturnsListRepositoriesView()
@@ -100,7 +90,7 @@ namespace GiHubSample.Web.Tests.Controllers
             var userName = controller.DefaultUserRepository;
 
             // create a list of repositories to return 
-            var userRepositories = GitHubRepoRepositoryMockHelper.GenerateFakeRepos(userName);
+            var userRepositories = MockHelper.GenerateFakeRepos(userName);
 
             mockGitHubService.Setup(s => s.GetUserRepositories(userName)).Returns(userRepositories);
 
@@ -127,7 +117,7 @@ namespace GiHubSample.Web.Tests.Controllers
             controller.DefaultUserRepository = userName;
 
             // create a list of repositories to return 
-            var userRepositories = GitHubRepoRepositoryMockHelper.GenerateFakeRepos(userName);
+            var userRepositories = MockHelper.GenerateFakeRepos(userName);
 
             mockGitHubService.Setup(s => s.GetUserRepositories(userName)).Returns(userRepositories);
 
@@ -151,8 +141,8 @@ namespace GiHubSample.Web.Tests.Controllers
             var repoNameFake = "repoFake1";
 
             // create fake repository detail
-            var repoDetail = GitHubRepoRepositoryMockHelper.GetRepoByName(ownerFake, repoNameFake);
-            var repoContributors = GitHubRepoRepositoryMockHelper.GetRepoContributors(ownerFake, repoNameFake);
+            var repoDetail = MockHelper.GetRepoByName(ownerFake, repoNameFake);
+            var repoContributors = MockHelper.GetRepoContributors(ownerFake, repoNameFake);
 
             mockGitHubService.Setup(s => s.GetRepoByName(ownerFake, repoNameFake)).Returns(repoDetail);
             mockGitHubService.Setup(s => s.GetRepoContributors(ownerFake, repoNameFake)).Returns(repoContributors);
@@ -179,8 +169,8 @@ namespace GiHubSample.Web.Tests.Controllers
             string repoNameFake = null;
 
             // create fake repository detail
-            var repoDetail = GitHubRepoRepositoryMockHelper.GetRepoByName(ownerFake, repoNameFake);
-            var repoContributors = GitHubRepoRepositoryMockHelper.GetRepoContributors(ownerFake, repoNameFake);
+            var repoDetail = MockHelper.GetRepoByName(ownerFake, repoNameFake);
+            var repoContributors = MockHelper.GetRepoContributors(ownerFake, repoNameFake);
 
             mockGitHubService.Setup(s => s.GetRepoByName(ownerFake, repoNameFake)).Returns(repoDetail);
             mockGitHubService.Setup(s => s.GetRepoContributors(ownerFake, repoNameFake)).Returns(repoContributors);
@@ -207,8 +197,8 @@ namespace GiHubSample.Web.Tests.Controllers
             var repoNameFake = "repoFake1";
 
             // create fake repository detail
-            var repoDetail = GitHubRepoRepositoryMockHelper.GetRepoByName(ownerFake, repoNameFake);
-            var repoContributors = GitHubRepoRepositoryMockHelper.GetRepoContributors(ownerFake, repoNameFake);
+            var repoDetail = MockHelper.GetRepoByName(ownerFake, repoNameFake);
+            var repoContributors = MockHelper.GetRepoContributors(ownerFake, repoNameFake);
 
             mockGitHubService.Setup(s => s.GetRepoByName(ownerFake, repoNameFake)).Returns(repoDetail);
             mockGitHubService.Setup(s => s.GetRepoContributors(ownerFake, repoNameFake)).Returns(repoContributors);
@@ -235,8 +225,8 @@ namespace GiHubSample.Web.Tests.Controllers
             var repoNameFake = "repoFake1";
 
             // create fake repository detail
-            var repoDetail = GitHubRepoRepositoryMockHelper.GetRepoByName(ownerFake, repoNameFake);
-            var repoContributors = GitHubRepoRepositoryMockHelper.GetRepoContributors(ownerFake, repoNameFake);
+            var repoDetail = MockHelper.GetRepoByName(ownerFake, repoNameFake);
+            var repoContributors = MockHelper.GetRepoContributors(ownerFake, repoNameFake);
 
             mockGitHubService.Setup(s => s.GetRepoByName(ownerFake, repoNameFake)).Returns(repoDetail);
             mockGitHubService.Setup(s => s.GetRepoContributors(ownerFake, repoNameFake)).Returns(repoContributors);
@@ -259,7 +249,7 @@ namespace GiHubSample.Web.Tests.Controllers
             HomeController controller = new HomeController(mockGitHubService.Object);
 
             // create a list of repositories to return 
-            var userRepositories = GitHubRepoRepositoryMockHelper.GenerateFakeRepos("fakeUserName");
+            var userRepositories = MockHelper.GenerateFakeRepos("fakeUserName");
 
             mockGitHubService.Setup(s => s.GetAllFavorities()).Returns(userRepositories);
 
@@ -319,7 +309,7 @@ namespace GiHubSample.Web.Tests.Controllers
             var fakeRepoName = "fakeRepoName";
 
             // create a list of repositories to return 
-            var userRepositories = GitHubRepoRepositoryMockHelper.GenerateFakeRepos(fakeRepoName);
+            var userRepositories = MockHelper.GenerateFakeRepos(fakeRepoName);
 
             mockGitHubService.Setup(s => s.SearchByRepoName(fakeRepoName)).Returns(userRepositories);
 
@@ -360,10 +350,10 @@ namespace GiHubSample.Web.Tests.Controllers
             HomeController controller = new HomeController(mockGitHubService.Object);
 
             // create fake repo
-            GitHubRepo repo = GitHubRepoRepositoryMockHelper.GetRepoByName("ownerFake1", "repoNameFake1");
+            GitHubRepo repo = MockHelper.GetRepoByName("ownerFake1", "repoNameFake1");
 
             // convert to view model
-            GitHubRepoViewModel repoVm = GitHubRepoRepositoryMockHelper.MapToViewModel(repo, null);
+            GitHubRepoViewModel repoVm = MockHelper.MapToViewModel(repo, null);
             string IsFavoriteRepo = "true";
 
             // Act
@@ -383,10 +373,10 @@ namespace GiHubSample.Web.Tests.Controllers
             HomeController controller = new HomeController(mockGitHubService.Object);
 
             // create fake repo
-            GitHubRepo repo = GitHubRepoRepositoryMockHelper.GetRepoByName("ownerFake1", "repoNameFake1");
+            GitHubRepo repo = MockHelper.GetRepoByName("ownerFake1", "repoNameFake1");
 
             // convert to view model
-            GitHubRepoViewModel repoVm = GitHubRepoRepositoryMockHelper.MapToViewModel(repo, null);
+            GitHubRepoViewModel repoVm = MockHelper.MapToViewModel(repo, null);
             string IsFavoriteRepo = "false";
 
             // Act
@@ -397,8 +387,5 @@ namespace GiHubSample.Web.Tests.Controllers
 
             Assert.IsTrue(result.RouteValues["action"].ToString() == "ListFavoritiesRepos");
         }
-
-        
-
     }
 }

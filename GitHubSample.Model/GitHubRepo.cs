@@ -26,11 +26,11 @@ public partial class GitHubRepo
 
     public string Language { get; set; }
 
+    public string OwnerName { get; set; }
+
     public Nullable<System.DateTime> CreatedAt { get; set; }
 
     public Nullable<System.DateTime> UpdatedAt { get; set; }
-
-    public string OwnerName { get; set; }
 
     public string OwnerAvatarUrl { get; set; }
 

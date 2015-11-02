@@ -1,18 +1,19 @@
 ﻿using GitHubSample.Data;
+using System.Data.Entity;
 
 namespace GitHubSample.Data.Infrastructure
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IDatabaseFactory databaseFactory;
-        private GitHubSampleEntities dataContext;
+        private DbContext dataContext;
 
         public UnitOfWork(IDatabaseFactory databaseFactory)
         {
             this.databaseFactory = databaseFactory;
         }
 
-        protected GitHubSampleEntities DataContext
+        protected DbContext DataContext
         {
             get { return dataContext ?? (dataContext = databaseFactory.Get()); }
         }

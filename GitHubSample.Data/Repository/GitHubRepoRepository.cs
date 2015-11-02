@@ -130,6 +130,10 @@ namespace GitHubSample.Data.Repository
             return jsonObject;
         }
 
+        #endregion
+
+        #region Helper
+
         private GitHubSample.Model.GitHubRepo MapDtoToModel(GitHubRepoDTO dto)
         {
             GitHubSample.Model.GitHubRepo repoModel = new GitHubRepo();
@@ -163,7 +167,6 @@ namespace GitHubSample.Data.Repository
 
             return dt;
         }
-
         #endregion
     }
 }
