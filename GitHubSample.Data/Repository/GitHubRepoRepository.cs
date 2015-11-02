@@ -25,6 +25,10 @@ namespace GitHubSample.Data.Repository
 
         #region EF wrapper
 
+        /// <summary>
+        /// Unmark repository as favorite, removing from local database
+        /// </summary>
+        /// <param name="repository"></param>
         public void UnMarkAsFavorite(GitHubRepo repository)
         {
             var entity = base.GetAll().Where(r => r.GitHubRepoId == repository.GitHubRepoId).FirstOrDefault();
@@ -33,6 +37,12 @@ namespace GitHubSample.Data.Repository
 
         }
 
+        /// <summary>
+        ///  Verify if repository is marked as favorite or not. 
+        /// If it exists in local database, return true
+        /// </summary>
+        /// <param name="gitHubRepoId"></param>
+        /// <returns></returns>
         public bool IsFavoriteRepo(int gitHubRepoId)
         {
             var entity = base.GetAll().Where(r => r.GitHubRepoId == gitHubRepoId).FirstOrDefault();
@@ -48,6 +58,11 @@ namespace GitHubSample.Data.Repository
 
         #region GitHub api wrapper
 
+        /// <summary>
+        /// Search github looking for query criteria, return a list of repositories
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public IEnumerable<GitHubRepo> SearchRepositories(string query)
         {
 
@@ -72,6 +87,12 @@ namespace GitHubSample.Data.Repository
             return repoList;
         }
 
+        /// <summary>
+        /// Return a github repository throught its owner and repository name
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <param name="repoName"></param>
+        /// <returns></returns>
         public GitHubRepo GetRepoByName(string owner, string repoName)
         {
             var repoModel = new GitHubRepo();
@@ -91,6 +112,11 @@ namespace GitHubSample.Data.Repository
             return repoModel;
         }
 
+        /// <summary>
+        /// Return all user repositories from github
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         public IEnumerable<GitHubRepo> GetUserRepositories(string userName)
         {
             var repoList = new List<GitHubRepo>();
@@ -113,6 +139,12 @@ namespace GitHubSample.Data.Repository
             return repoList;
         }
 
+        /// <summary>
+        /// Return a list of repository's contributors
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <param name="repoName"></param>
+        /// <returns></returns>
         public IEnumerable<GitHubUserDTO> GetRepoContributors(string owner, string repoName)
         {
             var jsonObject = new List<GitHubUserDTO>();
@@ -134,6 +166,11 @@ namespace GitHubSample.Data.Repository
 
         #region Helper
 
+        /// <summary>
+        /// Map entity from DTO to model
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         private GitHubSample.Model.GitHubRepo MapDtoToModel(GitHubRepoDTO dto)
         {
             GitHubSample.Model.GitHubRepo repoModel = new GitHubRepo();
@@ -152,6 +189,11 @@ namespace GitHubSample.Data.Repository
             return repoModel;
         }
 
+        /// <summary>
+        /// Format date received from github api
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private System.DateTime? ConvertToDateTime(string value)
         {
             DateTime dt;

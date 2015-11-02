@@ -23,13 +23,22 @@ namespace GitHubSample.Services
             this.unitOfWork = unitOfWork;
         }
 
-        #region favorities methods
+        #region favorities methods from local database
 
+        /// <summary>
+        /// Return all favorities repositories from local database
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<GitHubRepo> GetAllFavorities()
         {
             return this.gitHubRepoRepository.GetAll();
         }
 
+        /// <summary>
+        /// Mark repository as favorite, adding to local database
+        /// </summary>
+        /// <param name="repository"></param>
+        /// <returns></returns>
         public GitHubRepo MarkAsFavorite(GitHubRepo repository)
         {
             if (repository == null)
@@ -50,6 +59,10 @@ namespace GitHubSample.Services
             }
         }
 
+        /// <summary>
+        /// Unmark repository as favorite, removing from local database
+        /// </summary>
+        /// <param name="repository"></param>
         public void UnMarkAsFavorite(GitHubRepo repository)
         {
             if (repository == null)
@@ -68,6 +81,11 @@ namespace GitHubSample.Services
             }
         }
 
+        /// <summary>
+        ///  Verify if repository is marked as favorite or not
+        /// </summary>
+        /// <param name="gitHubRepoId"></param>
+        /// <returns></returns>
         public bool IsFavoriteRepo(int gitHubRepoId)
         {
             try
@@ -85,6 +103,11 @@ namespace GitHubSample.Services
 
         #region GitHub services API
 
+        /// <summary>
+        /// Return all user repositories from github
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         public IEnumerable<GitHubRepo> GetUserRepositories(string userName)
         {
             try
@@ -97,6 +120,11 @@ namespace GitHubSample.Services
             }
         }
 
+        /// <summary>
+        /// Search github looking for query criteria, return a list of repositories
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public IEnumerable<GitHubRepo> SearchByRepoName(string query)
         {
             try
@@ -109,6 +137,12 @@ namespace GitHubSample.Services
             }
         }
 
+        /// <summary>
+        /// Return a github repository throught its owner and repository name
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <param name="repoName"></param>
+        /// <returns></returns>
         public GitHubRepo GetRepoByName(string owner, string repoName)
         {
             try
@@ -122,6 +156,12 @@ namespace GitHubSample.Services
             }
         }
 
+        /// <summary>
+        /// Return a list of repository's contributors
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <param name="repoName"></param>
+        /// <returns></returns>
         public IEnumerable<GitHubUserDTO> GetRepoContributors(string owner, string repoName)
         {
             try
@@ -133,6 +173,7 @@ namespace GitHubSample.Services
                 throw;
             }
         }
+
         #endregion
     }
 }

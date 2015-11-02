@@ -10,13 +10,14 @@ namespace GiHubSample.Web.App_Start
         public static void Run()
         {
 
-            // Configure AutoMapper (Entity Mapper)
-            //AutoMapperConfiguration.Configure();
-
             // IOC configuration
             AutoFacConfig.ConfigureContainer();
         }
 
+        /// <summary>
+        /// Get default user repository from web.config.
+        /// </summary>
+        /// <returns></returns>
         public static string GetDefaultGitHubRepo()
         {
             string defaultRepo = string.Empty;

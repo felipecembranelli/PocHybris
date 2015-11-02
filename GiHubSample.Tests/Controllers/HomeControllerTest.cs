@@ -20,7 +20,6 @@ namespace GitHubSample.Tests.Controllers
         public void IndexAction_ReturnsListRepositoriesView()
         {
             // Arrange
-            //var mockGitHubRepository = new Mock<IGitHubRepoRepository>();
             var mockGitHubService = new Mock<IGitHubRepoService>();
 
             HomeController controller = new HomeController(mockGitHubService.Object);
@@ -36,7 +35,6 @@ namespace GitHubSample.Tests.Controllers
         public void DetailAction_ReturnsRepoDetailView()
         {
             // Arrange
-            //var mockGitHubRepository = new Mock<IGitHubRepoRepository>();
             var mockGitHubService = new Mock<IGitHubRepoService>();
 
             HomeController controller = new HomeController(mockGitHubService.Object);
@@ -52,7 +50,6 @@ namespace GitHubSample.Tests.Controllers
         public void SearchAction_ReturnsListRepositoriesView()
         {
             // Arrange
-            //var mockGitHubRepository = new Mock<IGitHubRepoRepository>();
             var mockGitHubService = new Mock<IGitHubRepoService>();
 
             HomeController controller = new HomeController(mockGitHubService.Object);
@@ -68,7 +65,6 @@ namespace GitHubSample.Tests.Controllers
         public void ListFavoritiesReposAction_ReturnsListRepositoriesView()
         {
             // Arrange
-            //var mockGitHubRepository = new Mock<IGitHubRepoRepository>();
             var mockGitHubService = new Mock<IGitHubRepoService>();
 
             HomeController controller = new HomeController(mockGitHubService.Object);

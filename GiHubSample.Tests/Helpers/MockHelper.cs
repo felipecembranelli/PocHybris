@@ -15,10 +15,11 @@ using GiHubSample.Web.ViewModels;
 
 namespace GitHubSample.Tests.Helpers
 {
+    /// <summary>
+    /// Helper class used to create mock objects
+    /// </summary>
     public static class MockHelper
     {
-
-        #region Mock Helper
 
         public static IEnumerable<GitHubRepo> GenerateFakeRepos(string userName)
         {
@@ -151,7 +152,5 @@ namespace GitHubSample.Tests.Helpers
 
             return vm;
         }
-
-        #endregion
     }
 }

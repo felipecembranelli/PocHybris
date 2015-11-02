@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace GiHubSample.Web.Mapper
 {
+    /// <summary>
+    /// Class used to map entities
+    /// </summary>
     static class EntityMapper
     {
         public static List<GitHubRepoViewModel> MapListToViewModelList(IEnumerable<GitHubRepo> repos)

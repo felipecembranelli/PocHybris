@@ -20,7 +20,6 @@ namespace GitHubSample.Data.Infrastructure
 
         public void Commit()
         {
-            //DataContext.Commit();
             DataContext.SaveChanges();
         }
     }

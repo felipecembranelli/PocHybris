@@ -36,6 +36,10 @@ namespace GiHubSample.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// Returns list of "my repositories", based on web.config "defaultUserRepository" configuation.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             if (this.defaultUserRepository == string.Empty)
@@ -48,6 +52,13 @@ namespace GiHubSample.Web.Controllers
             return View("ListRepositories", EntityMapper.MapListToViewModelList(userRepositories));
         }
 
+        /// <summary>
+        /// Returns github repo details, calling online github api
+        /// </summary>
+        /// <param name="gitHubRepoId"></param>
+        /// <param name="repoName"></param>
+        /// <param name="owner"></param>
+        /// <returns></returns>
         public ActionResult Detail(int gitHubRepoId, string repoName, string owner)
         {
             var repoDetail = this.gitHubservice.GetRepoByName(owner,repoName);
@@ -66,6 +77,11 @@ namespace GiHubSample.Web.Controllers
             return View("RepoDetail", vm);
         }
 
+        /// <summary>
+        /// Returns list of github repositories that matchs the search criteria
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Search(string searchString)
         {
@@ -76,6 +92,12 @@ namespace GiHubSample.Web.Controllers
             return View("ListRepositories", EntityMapper.MapListToViewModelList(repositories));
         }
 
+        /// <summary>
+        /// Mark a repository as favority, salving into local database
+        /// </summary>
+        /// <param name="repo"></param>
+        /// <param name="IsFavoriteRepo"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult MarkAsFavorite(GitHubRepoViewModel repo, string IsFavoriteRepo)
         {
@@ -90,6 +112,10 @@ namespace GiHubSample.Web.Controllers
             return RedirectToAction("ListFavoritiesRepos");
         }
 
+        /// <summary>
+        /// List all local saved repositories (favorities repositories)
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ListFavoritiesRepos()
         {
             var userRepositories = this.gitHubservice.GetAllFavorities();
