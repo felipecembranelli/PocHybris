@@ -1,6 +1,8 @@
 # PocHybris
 Sample ASP.NET MVC application integrating with Hybris platform via Hybris REST API.
 
+![alt tag](https://www.hybris.com/medias/sys_master/downloads/downloads/8804331847710/banner-omni-commerce-connect.jpg)
+
 ## Contributing
 
 Fork it!
