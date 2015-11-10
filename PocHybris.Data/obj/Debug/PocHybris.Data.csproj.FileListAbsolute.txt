@@ -1,0 +1,16 @@
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\obj\Debug\PocHybris.Data.csprojResolveAssemblyReference.cache
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\bin\Debug\PocHybris.Data.dll.config
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\bin\Debug\PocHybris.Data.dll
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\bin\Debug\PocHybris.Data.pdb
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\bin\Debug\EntityFramework.dll
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\bin\Debug\Newtonsoft.Json.dll
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\bin\Debug\PocHybris.Model.dll
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\bin\Debug\System.Net.Http.Formatting.dll
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\bin\Debug\PocHybris.Model.pdb
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\bin\Debug\EntityFramework.xml
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\bin\Debug\Newtonsoft.Json.xml
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\bin\Debug\System.Net.Http.Formatting.xml
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\obj\Debug\PocHybris.Data.dll
+D:\WorkingDir\Projetos\DPK\POCHybris\POCHybris\PocHybris.Data\obj\Debug\PocHybris.Data.pdb

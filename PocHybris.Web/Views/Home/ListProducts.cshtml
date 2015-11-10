@@ -1,0 +1,65 @@
+﻿@model PocHybris.Data.HybrisAPI.ProductCatalogRootDTO
+@{
+    ViewBag.Title = "Products";
+}
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">@ViewBag.PageTitle</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+<div class="row">
+    @foreach (var item in Model.products)
+    {
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            
+                            @{
+                                var imgPath = string.Empty;
+
+                                if (item.images != null)
+                                {
+                                    if (item.images.Count > 0)
+                                    {
+                                        imgPath = "http://localhost:9001/" + item.images[0].url.ToString();
+                                    }
+
+                                }
+                                
+                            }
+                            <img src="@imgPath" height="150" width="150" />
+                        </div>
+
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Html.DisplayFor(modelItem => item.name)</div>
+                            <div>@Html.DisplayFor(modelItem => item.manufacturer)</div>
+                            @{
+                                for (int i = 0; i < item.averageRating; i++)
+                                {
+                                    <i class="glyphicon glyphicon-star"></i>
+                                }
+                            }
+                            
+                         </div>
+                         
+                    </div>
+                </div>
+                
+                    <a href="@Url.Action("Detail", "Home",new { id = item.url})">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                        </a>
+</div>
+        </div>
+    }
+    </div>
+        <!-- /.row -->
+</div>
