@@ -5,8 +5,8 @@ Sample ASP.NET MVC application integrating with Hybris platform via Hybris REST 
 
 ## Screenshots
 
-![alt tag](https://www.hybris.com/medias/sys_master/downloads/downloads/8804331847710/poc_hybris.png)
-![alt tag](https://www.hybris.com/medias/sys_master/downloads/downloads/8804331847710/vs.png)
+![alt tag](https://github.com/felipecembranelli/PocHybris/blob/master/Screenshot/poc_hybris.png)
+![alt tag](https://github.com/felipecembranelli/PocHybris/blob/master/Screenshot/vs.png)
 
 ## Contributing
 
